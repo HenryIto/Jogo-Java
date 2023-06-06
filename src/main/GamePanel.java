@@ -51,7 +51,7 @@ public class GamePanel extends JPanel implements Runnable{
 			// em vez de escrever paintComponent para chamar a função
 			// voce escreve repaint
 			repaint();
-			
+			//asdfaf
 		}
 	}
 	public void update() {
