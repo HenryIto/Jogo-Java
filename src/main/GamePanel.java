@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
@@ -44,8 +45,23 @@ public class GamePanel extends JPanel implements Runnable{
 	public void run() {
 		// enquanto este gameThread existir ele vai ficar executando o que ta dentro do while
 		while(gameThread != null) {
+			// update ele atualiza a posição do personagem
+			update();
 			
-			System.out.println("the game loop is runing");
+			// em vez de escrever paintComponent para chamar a função
+			// voce escreve repaint
+			repaint();
+			
 		}
+	}
+	public void update() {
+		
+	}
+	// esse metodo paintComponent é um metodo embutido do Java
+	// graphics é uma class que tem varias funções para desenhar na tela
+	public void paintComponent(Graphics g) {
+		// esse super significa classe pai desta classe
+		// e neste caso a classe pai é a JPanel porque o GamePanel é uma subclass da JPanel
+		super.paintComponent(g);
 	}
 }
