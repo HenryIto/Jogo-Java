@@ -64,4 +64,6 @@ public class GamePanel extends JPanel implements Runnable{
 		// e neste caso a classe pai é a JPanel porque o GamePanel é uma subclass da JPanel
 		super.paintComponent(g);
 	}
+
+    // AGORA ESSE CÓDIGO É MEU
 }
