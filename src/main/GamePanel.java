@@ -33,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable{
 	// define a posição padrao do player
 	int playerX = 100;
 	int playerY = 100;
-	int playerSpeed = 4;
+	float playerSpeed = 0; // a princípio a velocidade do player é definida como 0
 	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -99,14 +99,22 @@ public class GamePanel extends JPanel implements Runnable{
 		boolean verticalMovement = keyH.upPressed || keyH.downPressed;
 		boolean horizontalMovement = keyH.leftPressed || keyH.rightPressed;
 		
+		int velocity = 4;
+		playerSpeed = velocity; // define a velocidade do Player
+		if (verticalMovement && horizontalMovement) {
+			playerSpeed = velocity * .75f; // caso ele esteja andando na diagonal vai diminuir a velocidade total do Player
+		}
+		
 		if (verticalMovement) {
-			int verticalDirection = keyH.downPressed ? 1 : -1;
-			playerY += playerSpeed * verticalDirection;
+			int verticalDirection = keyH.downPressed ? 1 : -1; // isso vai fazer o Player ir para cima ou para baixo dependendo de qual tecla estiver apertada
+			playerY += playerSpeed * verticalDirection; // isso vai fazer o Player se mover na _vertical_
 		}
 		if (horizontalMovement) {
-			int horizontalDirection = keyH.rightPressed ? 1 : -1;
-			playerX += playerSpeed * horizontalDirection;
+			int horizontalDirection = keyH.rightPressed ? 1 : -1; // isso vai fazer o Player ir para esquerda ou para direita dependendo de qual tecla estiver apertada
+			playerX += playerSpeed * horizontalDirection; // isso vai fazer o Player se mover na _horizontal_
 		}
+		
+		System.out.println(playerSpeed);
 	}
 	// esse metodo paintComponent é um metodo embutido do Java
 	// graphics é uma class que tem varias funções para desenhar na tela
