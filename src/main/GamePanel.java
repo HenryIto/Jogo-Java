@@ -7,9 +7,8 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable{
-	
-	
 	//screen settings
 	final int originalTileSize = 16; // 16x16 blocos
 	final int scale = 3;
@@ -52,53 +51,6 @@ public class GamePanel extends JPanel implements Runnable{
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
-	
-	// quando iniciamos este gameThread ele chama automaticamente esse metodo run
-//	@Override
-	// um exemplo de loop
-//	public void run() {
-//		
-//		// é 1 segundo mas convertido em 1 bilhão de nanosegundos para ficar mais precisso
-//		// 0.016666 por segundo
-//		double drawInterval = 1000000000/FPS;
-//		// o nanoTime retorna a hora atual do sistema
-//		// nextDrawTime faz com que o prossimo desenho sera o tempo atual mais o intervalo que seria 0.016666 
-//		double nextDrawTime = System.nanoTime() + drawInterval;
-//		
-//		// enquanto este gameThread existir ele vai ficar executando o que ta dentro do while
-//		while(gameThread != null) {
-//			
-//			// update ele atualiza a posição do personagem
-//			update();
-//			
-//			// repaint desenha a tela com a informação atualizada
-//			// em vez de escrever paintComponent para chamar a função
-//			// voce escreve repaint
-//			repaint();
-//			
-//			
-//			try {
-//				// retorna quanto tempo resta até o proximo desenho
-//				double remainingTime = nextDrawTime -  System.nanoTime();
-//				// como o sleep não aceita nanosegundos tem que converter para milisegundos
-//				remainingTime = remainingTime/1000000;
-//				
-//				// se o update e o repaint levou mais tempo que o drawInterval entao não há tempo restante
-//				// entao esse thread nao precisa dormir(sleep)
-//				if (remainingTime < 0) {
-//					remainingTime = 0;
-//				}
-//				// esse sleep pausa o loop do jogo para que não faça nada até que o tempo do sleep termine
-//				Thread.sleep((long) remainingTime);
-//				
-//				// o nextDrawTime sera 0.016666
-//				nextDrawTime += drawInterval;
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-//	}
 	
 	public void run() {
 		
@@ -144,17 +96,16 @@ public class GamePanel extends JPanel implements Runnable{
 		}
 	}
 	public void update() {
-		if(keyH.upPressed == true) {
-			playerY -= playerSpeed;
+		boolean verticalMovement = keyH.upPressed || keyH.downPressed;
+		boolean horizontalMovement = keyH.leftPressed || keyH.rightPressed;
+		
+		if (verticalMovement) {
+			int verticalDirection = keyH.downPressed ? 1 : -1;
+			playerY += playerSpeed * verticalDirection;
 		}
-		else if(keyH.downPressed == true) {
-			playerY += playerSpeed;
-		}
-		else if(keyH.leftPressed == true) {
-			playerX -= playerSpeed;
-		}
-		else if(keyH.rightPressed == true) {
-			playerX += playerSpeed;
+		if (horizontalMovement) {
+			int horizontalDirection = keyH.rightPressed ? 1 : -1;
+			playerX += playerSpeed * horizontalDirection;
 		}
 	}
 	// esse metodo paintComponent é um metodo embutido do Java
