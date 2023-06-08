@@ -7,6 +7,8 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import characters.Player;
+
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable{
 	//screen settings
@@ -28,6 +30,10 @@ public class GamePanel extends JPanel implements Runnable{
 	// até você parar
 	Thread gameThread;
 	// para se usar threads você precisar implementar Runnable na class
+	
+
+	Player Player = new Player(this, keyH);
+	// this -> GamePanel, essa classe que ele está
 	
 	
 	// define a posição padrao do player
