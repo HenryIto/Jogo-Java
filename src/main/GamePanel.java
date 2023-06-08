@@ -15,7 +15,7 @@ public class GamePanel extends JPanel implements Runnable{
 	final int originalTileSize = 16; // 16x16 blocos
 	final int scale = 3;
 	
-	final int tileSize = originalTileSize * scale; // 48x48 blocos
+	public final int tileSize = originalTileSize * scale; // 48x48 blocos
 	final int maxScreenCol = 16;
 	final int maxScreenRow = 12;
 	final int screenWidth = tileSize * maxScreenCol; // 768 pixels
@@ -102,25 +102,7 @@ public class GamePanel extends JPanel implements Runnable{
 		}
 	}
 	public void update() {
-		boolean verticalMovement = keyH.upPressed || keyH.downPressed;
-		boolean horizontalMovement = keyH.leftPressed || keyH.rightPressed;
-		
-		int velocity = 4;
-		playerSpeed = velocity; // define a velocidade do Player
-		if (verticalMovement && horizontalMovement) {
-			playerSpeed = velocity * .75f; // caso ele esteja andando na diagonal vai diminuir a velocidade total do Player
-		}
-		
-		if (verticalMovement) {
-			int verticalDirection = keyH.downPressed ? 1 : -1; // isso vai fazer o Player ir para cima ou para baixo dependendo de qual tecla estiver apertada
-			playerY += playerSpeed * verticalDirection; // isso vai fazer o Player se mover na _vertical_
-		}
-		if (horizontalMovement) {
-			int horizontalDirection = keyH.rightPressed ? 1 : -1; // isso vai fazer o Player ir para esquerda ou para direita dependendo de qual tecla estiver apertada
-			playerX += playerSpeed * horizontalDirection; // isso vai fazer o Player se mover na _horizontal_
-		}
-		
-		System.out.println(playerSpeed);
+		Player.Update();
 	}
 	// esse metodo paintComponent é um metodo embutido do Java
 	// graphics é uma class que tem varias funções para desenhar na tela
@@ -128,12 +110,8 @@ public class GamePanel extends JPanel implements Runnable{
 		// esse super significa classe pai desta classe
 		// e neste caso a classe pai é a JPanel porque o GamePanel é uma subclass da JPanel
 		super.paintComponent(g);
-		
 		Graphics2D g2 = (Graphics2D)g;
-		
-		g2.setColor(Color.white);
-		// desenha um quadrado e preeche com a cor branca (int x, int y, int widht, int height)
-		g2.fillRect(playerX, playerY, tileSize, tileSize);
+		Player.Draw(g2);
 		
 		g2.dispose();
 	}
