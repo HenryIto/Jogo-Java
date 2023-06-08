@@ -59,7 +59,6 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	
 	public void run() {
-		
 		// é 1 segundo mas convertido em 1 bilhão de nanosegundos para ficar mais precisso
 		// 0.016666 por segundo
 		double drawInterval = 1000000000/FPS;
@@ -107,13 +106,14 @@ public class GamePanel extends JPanel implements Runnable{
 	// esse metodo paintComponent é um metodo embutido do Java
 	// graphics é uma class que tem varias funções para desenhar na tela
 	public void paintComponent(Graphics g) {
-		// esse super significa classe pai desta classe
-		// e neste caso a classe pai é a JPanel porque o GamePanel é uma subclass da JPanel
+		/*
+		 * esse super significa classe pai desta classe
+		 * e neste caso a classe pai é a JPanel porque o GamePanel é uma subclass da JPanel
+		*/
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
 		Player.Draw(g2);
 		
 		g2.dispose();
 	}
-
 }

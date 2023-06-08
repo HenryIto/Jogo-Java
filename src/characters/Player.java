@@ -23,10 +23,9 @@ public class Player extends Entity {
 		boolean verticalMovement = key.upPressed || key.downPressed;
 		boolean horizontalMovement = key.leftPressed || key.rightPressed;
 		
-		int velocity = 4;
 		Speed = MAX_SPEED; // define a velocidade do Player
 		if (verticalMovement && horizontalMovement) {
-			Speed = velocity * .75f; // caso ele esteja andando na diagonal vai diminuir a velocidade total do Player
+			Speed = MAX_SPEED * .75f; // caso ele esteja andando na diagonal vai diminuir a velocidade total do Player
 		}
 		
 		if (verticalMovement) {
@@ -37,7 +36,6 @@ public class Player extends Entity {
 			int horizontalDirection = key.rightPressed ? 1 : -1; // isso vai fazer o Player ir para esquerda ou para direita dependendo de qual tecla estiver apertada
 			X += Speed * horizontalDirection; // isso vai fazer o Player se mover na _horizontal_
 		}
-		
 		// System.out.println(Speed);
 	}
 	
