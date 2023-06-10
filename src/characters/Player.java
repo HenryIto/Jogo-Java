@@ -14,6 +14,7 @@ public class Player extends Entity {
 	public final String Name = "Remy";
 	public final float MAX_SPEED = 4f;
 	
+	// teste
 	GamePanel gp;
 	KeyHandler key;
 	
