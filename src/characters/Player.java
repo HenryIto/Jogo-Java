@@ -1,5 +1,6 @@
 package characters;
 
+import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -23,7 +24,6 @@ public class Player extends Entity {
 		this.key = keyHandler;
 		
 		setDefaultValues();
-		getPlayerImage();
 	}
 	
 	public void setDefaultValues() {
@@ -33,30 +33,7 @@ public class Player extends Entity {
 		direction = "down";
 	}
 	
-	public void getPlayerImage() {
-		try {
-			// ImageIO.read carrega uma imagem que esta dentro do arquivo
-			// getClass().getResourceAsStream("/Player/boy_up_1.png") retorna um objeto 'InputStream' que representa o fluxo de bytes da imagem 'boy_up_1.png'
-			// getClass() retorna o objeto Class para a classe em que esse código está sendo executado
-			// getResourceAsStream() é um método dessa classe que permite obter um fluxo de bytes para um recurso no mesmo diretório ou pacote da classe.
-			// ImageIO.read() lê o fluxo de bytes da imagem e retorna um objeto BufferedImage que representa a imagem carregada. 
-			// Portanto, essa linha de código carrega a imagem "boy_up_1.png" e retorna um objeto BufferedImage contendo essa imagem.
-			up1 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_up_1.png")); // boy!
-			up2 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_up_2.png"));
-			down1 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_down_1.png"));
-			down2 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_down_2.png"));
-			left1 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_left_1.png"));
-			left2 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_left_2.png"));
-			right1 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_right_1.png"));
-			right2 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_right_2.png"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public void Update() {
-		
-		
 		boolean verticalMovement = key.upPressed || key.downPressed;
 		boolean horizontalMovement = key.leftPressed || key.rightPressed;
 		
@@ -97,45 +74,12 @@ public class Player extends Entity {
 	
 	// este é o sprite do player
 	public void Draw(Graphics2D g2) {
-//		g2.setColor(Color.white);
-//		// desenha um quadrado e preeche com a cor branca (int x, int y, int widht, int height)
-//		g2.fillRect(X, Y, gp.tileSize, gp.tileSize);
-		
 		BufferedImage image = null;
-		
-		switch(direction) {
-		case "up":
-			if(spriteNum == 1) {
-				image = up1;
-			}
-			if(spriteNum == 2) {
-				image = up2;
-			}
-		break;
-		case "down":
-			if(spriteNum == 1) {
-				image = down1;
-			}
-			if(spriteNum == 2) {
-				image = down2;
-			}
-		break;
-		case "left":
-			if(spriteNum == 1) {
-				image = left1;
-			}
-			if(spriteNum == 2) {
-				image = left2;
-			}
-		break;
-		case "right":
-			if(spriteNum == 1) {
-				image = right1;
-			}
-			if(spriteNum == 2) {
-				image = right2;
-			}
-		break;
+		try {
+			String spriteName = "/Player/player_" + direction + "_" + spriteNum + ".png"; // seleciona o nome do sprite do player de acordo com as variaveis
+			image = ImageIO.read(getClass().getResourceAsStream(spriteName)); // pega o sprite de acordo com o nome do sprite
+		} catch(Exception error) {
+			error.printStackTrace(); // caso dê errado ele manda um erro, eu acho...
 		}
 		
 		// desenha a imagem na tela
