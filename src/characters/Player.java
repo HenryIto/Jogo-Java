@@ -33,23 +33,21 @@ public class Player extends Entity {
 	}
 	
 	public void getPlayerImage() {
-		
 		try {
-			
 			// ImageIO.read carrega uma imagem que esta dentro do arquivo
 			// getClass().getResourceAsStream("/Player/boy_up_1.png") retorna um objeto 'InputStream' que representa o fluxo de bytes da imagem 'boy_up_1.png'
 			// getClass() retorna o objeto Class para a classe em que esse código está sendo executado
 			// getResourceAsStream() é um método dessa classe que permite obter um fluxo de bytes para um recurso no mesmo diretório ou pacote da classe.
 			// ImageIO.read() lê o fluxo de bytes da imagem e retorna um objeto BufferedImage que representa a imagem carregada. 
 			// Portanto, essa linha de código carrega a imagem "boy_up_1.png" e retorna um objeto BufferedImage contendo essa imagem.
-			up1 = ImageIO.read(getClass().getResourceAsStream("../assets/sprites/Player/boy_up_1.png"));
-			up2 = ImageIO.read(getClass().getResourceAsStream("../assets/sprites/Player/boy_up_2.png"));
-			down1 = ImageIO.read(getClass().getResourceAsStream("../assets/sprites/Player/boy_down_1.png"));
-			down2 = ImageIO.read(getClass().getResourceAsStream("../assets/sprites/Player/boy_down_2.png"));
-			left1 = ImageIO.read(getClass().getResourceAsStream("../assets/sprites/Player/boy_left_1.png"));
-			left2 = ImageIO.read(getClass().getResourceAsStream("../assets/sprites/Player/boy_left_2.png"));
-			right1 = ImageIO.read(getClass().getResourceAsStream("../assets/sprites/Player/boy_right_1.png"));
-			right2 = ImageIO.read(getClass().getResourceAsStream("../assets/sprites/Player/boy_right_2.png"));
+			up1 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_up_1.png"));
+			up2 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_up_2.png"));
+			down1 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_down_1.png"));
+			down2 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_down_2.png"));
+			left1 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_left_1.png"));
+			left2 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_left_2.png"));
+			right1 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_right_1.png"));
+			right2 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_right_2.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
