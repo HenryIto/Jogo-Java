@@ -40,7 +40,7 @@ public class Player extends Entity {
 			// getResourceAsStream() é um método dessa classe que permite obter um fluxo de bytes para um recurso no mesmo diretório ou pacote da classe.
 			// ImageIO.read() lê o fluxo de bytes da imagem e retorna um objeto BufferedImage que representa a imagem carregada. 
 			// Portanto, essa linha de código carrega a imagem "boy_up_1.png" e retorna um objeto BufferedImage contendo essa imagem.
-			up1 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_up_1.png"));
+			up1 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_up_1.png")); // boy!
 			up2 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_up_2.png"));
 			down1 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_down_1.png"));
 			down2 = ImageIO.read(getClass().getResourceAsStream("/Player/boy_down_2.png"));
