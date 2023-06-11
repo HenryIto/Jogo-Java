@@ -39,20 +39,21 @@ public class Player extends Entity {
 		
 		Speed = MAX_SPEED; // define a velocidade do Player
 		
+		float spriteDelaySeconds = .12f;
+		float spriteTransitionDelay = (60 * spriteDelaySeconds); // transforma segundos em frames por segundo
 		if(verticalMovement || horizontalMovement) {
 			spriteCounter++;
-			if(spriteCounter > 10) {
-				if(spriteNum == 1) {
-					spriteNum = 2; 
-				}
-				else if(spriteNum == 2) {
-					spriteNum = 1;
-				}
+			if(spriteCounter > spriteTransitionDelay) {
+				int spriteFirstFrame = 1;
+				int spriteLastFrame = 2;
+				spriteNum = (spriteNum >= spriteLastFrame) ? spriteFirstFrame : spriteNum + 1;
 				spriteCounter = 0;
 			}
-		}else {
-			spriteNum = 1; 
+		} else {
+			spriteNum = 1;
 		}
+		
+		
 		if (verticalMovement && horizontalMovement) {
 			Speed = MAX_SPEED * .75f; // caso ele esteja andando na diagonal vai diminuir a velocidade total do Player
 		}
