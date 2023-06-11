@@ -9,11 +9,6 @@ import main.GamePanel;
 import main.KeyHandler;
 
 public class Player extends Entity {
-	// constantes: 'final' define que a variavel é uma constante, ou seja, ela não pode ser alterada.
-	public final String Name = "Remy";
-	public final float MAX_SPEED = 4f;
-	
-	// teste
 	GamePanel gp;
 	KeyHandler key;
 	
@@ -25,9 +20,9 @@ public class Player extends Entity {
 	}
 	
 	public void setDefaultValues() {
+		Name = "Remy";
 		x = 100;
 		y = 100;
-		speed = 4;
 	}
 	
 	public void Update() {
@@ -39,7 +34,7 @@ public class Player extends Entity {
 		float spriteDelaySeconds = .1f;
 		float spriteTransitionDelay = (60 * spriteDelaySeconds); // transforma segundos em frames por segundo
 		spriteCounter++;
-		if(spriteCounter > spriteTransitionDelay) {
+		if (spriteCounter > spriteTransitionDelay) {
 			int spriteFirstFrame = 1;
 			int spriteLastFrame = 6;
 			spriteNum = (spriteNum >= spriteLastFrame) ? spriteFirstFrame : spriteNum + 1;
@@ -71,7 +66,10 @@ public class Player extends Entity {
 	
 	// este é o sprite do player
 	public void Draw(Graphics2D g2) {
+		// BufferedImage descreve uma imagem com um buffer acessível de dados de imagem
+		// nos usamos isso para armazenar os nossos arquivos de imagem
 		BufferedImage image = null;
+		
 		try {
 			String spriteName = "/Player/player_" + state + "_" + spriteNum + ".png"; // seleciona o nome do sprite do player de acordo com as variaveis
 			image = ImageIO.read(getClass().getResourceAsStream(spriteName)); // pega o sprite de acordo com o nome do sprite
