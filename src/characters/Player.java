@@ -1,7 +1,6 @@
 package characters;
 
 import java.awt.image.BufferedImage;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
 
@@ -20,7 +19,7 @@ public class Player extends Entity {
 	}
 	
 	public void setDefaultValues() {
-		Name = "Remy";
+		name = "Remy";
 		x = 100;
 		y = 100;
 	}
@@ -77,10 +76,10 @@ public class Player extends Entity {
 			error.printStackTrace(); // caso dê errado ele manda um erro, eu acho...
 		}
 		
-		// desenha a imagem na tela
 		int xOffset = (gp.tileSize/2 * verticalDirection) - gp.tileSize/2; // faz com que a image não fique descentralizada quando o personagem muda a direção
-		int width = gp.tileSize * verticalDirection;
-		int height = gp.tileSize;
+		int width = gp.tileSize * verticalDirection; // largura do sprite
+		int height = gp.tileSize; // altura do sprite
+		// desenha a imagem na tela
 		g2.drawImage(image, x - xOffset, y, width, height, null);
 	}
 }
