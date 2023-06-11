@@ -12,8 +12,8 @@ import characters.Player;
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable{
 	//screen settings
-	final int originalTileSize = 16; // 16x16 blocos
-	final int scale = 3;
+	final int originalTileSize = 32;
+	final int scale = 2;
 	
 	public final int tileSize = originalTileSize * scale; // 48x48 blocos
 	final int maxScreenCol = 16;

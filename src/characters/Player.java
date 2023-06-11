@@ -3,8 +3,6 @@ package characters;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-
 import javax.imageio.ImageIO;
 
 import main.GamePanel;
@@ -27,48 +25,46 @@ public class Player extends Entity {
 	}
 	
 	public void setDefaultValues() {
-		X = 100;
-		Y = 100;
-		Speed = 4;
-		direction = "down";
+		x = 100;
+		y = 100;
+		speed = 4;
 	}
 	
 	public void Update() {
 		boolean verticalMovement = key.upPressed || key.downPressed;
 		boolean horizontalMovement = key.leftPressed || key.rightPressed;
 		
-		Speed = MAX_SPEED; // define a velocidade do Player
+		speed = MAX_SPEED; // define a velocidade do Player
 		
-		float spriteDelaySeconds = .12f;
+		float spriteDelaySeconds = .1f;
 		float spriteTransitionDelay = (60 * spriteDelaySeconds); // transforma segundos em frames por segundo
-		if(verticalMovement || horizontalMovement) {
-			spriteCounter++;
-			if(spriteCounter > spriteTransitionDelay) {
-				int spriteFirstFrame = 1;
-				int spriteLastFrame = 2;
-				spriteNum = (spriteNum >= spriteLastFrame) ? spriteFirstFrame : spriteNum + 1;
-				spriteCounter = 0;
-			}
+		spriteCounter++;
+		if(spriteCounter > spriteTransitionDelay) {
+			int spriteFirstFrame = 1;
+			int spriteLastFrame = 6;
+			spriteNum = (spriteNum >= spriteLastFrame) ? spriteFirstFrame : spriteNum + 1;
+			spriteCounter = 0;
+		}
+		
+		if (!verticalMovement && !horizontalMovement) {
+			spriteNum = 1; // reseta o frame pra ficar sempre no primeiro
+			state = "idle"; // sprite parado
 		} else {
-			spriteNum = 1;
+			state = "run"; // sprite correndo
 		}
 		
 		
 		if (verticalMovement && horizontalMovement) {
-			Speed = MAX_SPEED * .75f; // caso ele esteja andando na diagonal vai diminuir a velocidade total do Player
+			speed = MAX_SPEED * .75f; // caso ele esteja andando na diagonal vai diminuir a velocidade total do Player
 		}
 		
 		if (verticalMovement) {
-			String verticalImageDirection = key.downPressed ? "down" : "up";
-			direction = verticalImageDirection;
 			int verticalDirection = key.downPressed ? 1 : -1; // isso vai fazer o Player ir para cima ou para baixo dependendo de qual tecla estiver apertada
-			Y += Speed * verticalDirection; // isso vai fazer o Player se mover na _vertical_
+			y += speed * verticalDirection; // isso vai fazer o Player se mover na _vertical_
 		}
 		if (horizontalMovement) {
-			String horizontalImageDirection = key.rightPressed ? "right" : "left";
-			direction = horizontalImageDirection;
-			int horizontalDirection = key.rightPressed ? 1 : -1; // isso vai fazer o Player ir para esquerda ou para direita dependendo de qual tecla estiver apertada
-			X += Speed * horizontalDirection; // isso vai fazer o Player se mover na _horizontal_
+			verticalDirection = key.rightPressed ? 1 : -1; // isso vai fazer o Player ir para esquerda ou para direita dependendo de qual tecla estiver apertada
+			x += speed * verticalDirection; // isso vai fazer o Player se mover na _horizontal_
 		}
 		// System.out.println(Speed);
 	}
@@ -77,13 +73,16 @@ public class Player extends Entity {
 	public void Draw(Graphics2D g2) {
 		BufferedImage image = null;
 		try {
-			String spriteName = "/Player/player_" + direction + "_" + spriteNum + ".png"; // seleciona o nome do sprite do player de acordo com as variaveis
+			String spriteName = "/Player/player_" + state + "_" + spriteNum + ".png"; // seleciona o nome do sprite do player de acordo com as variaveis
 			image = ImageIO.read(getClass().getResourceAsStream(spriteName)); // pega o sprite de acordo com o nome do sprite
 		} catch(Exception error) {
 			error.printStackTrace(); // caso dê errado ele manda um erro, eu acho...
 		}
 		
 		// desenha a imagem na tela
-		g2.drawImage(image, X, Y, gp.tileSize, gp.tileSize, null);
+		int xOffset = (gp.tileSize/2 * verticalDirection) - gp.tileSize/2; // faz com que a image não fique descentralizada quando o personagem muda a direção
+		int width = gp.tileSize * verticalDirection;
+		int height = gp.tileSize;
+		g2.drawImage(image, x - xOffset, y, width, height, null);
 	}
 }
