@@ -70,7 +70,7 @@ public class Player extends Entity {
 		BufferedImage image = null;
 		
 		try {
-			String spriteName = "/Player/player_" + state + "_" + spriteNum + ".png"; // seleciona o nome do sprite do player de acordo com as variaveis
+			String spriteName = "/player/player_" + state + "_" + spriteNum + ".png"; // seleciona o nome do sprite do player de acordo com as variaveis
 			image = ImageIO.read(getClass().getResourceAsStream(spriteName)); // pega o sprite de acordo com o nome do sprite
 		} catch(Exception error) {
 			error.printStackTrace(); // caso dê errado ele manda um erro, eu acho...
