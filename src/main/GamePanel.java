@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 
 import characters.Player;
 
-@SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable{
 	//screen settings
 	final int originalTileSize = 32;
