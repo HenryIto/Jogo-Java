@@ -68,7 +68,8 @@ public class Environment extends TileManager {
 				int screenX = worldX - gp.player.worldX + gp.player.screenX;
 				int screenY = worldY - gp.player.worldY + gp.player.screenY;
 				int tileType = tileTypeMap[col][row];
-				
+
+				// esse if faz com que não carregue o mapa inteiro faz com que carregue o mapa comforme a camera
 				if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX  &&
 				   worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
 				   worldY + gp.tileSize> gp.player.worldY - gp.player.screenY &&
