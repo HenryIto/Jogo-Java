@@ -1,27 +1,46 @@
 package world;
 
 import java.awt.Graphics2D;
-import main.GamePanel;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import tiles.Tile;
+import main.GamePanel;
 
 public class Environment {
 	GamePanel gp;
 	
-	public String name;
-	
-	public void drawOnce(Graphics2D g2d) {
-		int windowHeight = gp.getHeight() / gp.tileSize; // tamanho do cenário em blocos/unidades
-		int windowWidth = gp.getWidth() / gp.tileSize;
+	public Environment(GamePanel gp, String name) {
+		this.gp = gp;
 		
-		/**
-		 * row = linhas (rows)
-		 * col = colunas (columns)
-		 */
-		for (int row = 0; row < windowHeight; row++) {
-			for (int col = 0; col < windowWidth; col++) {
-				
-			}
+		final BufferedImage referenceImage = getImage(name);
+		int width = referenceImage.getWidth();
+		int height = referenceImage.getHeight();
+	}
+	
+	public BufferedImage getImage(String name) {
+		BufferedImage image = null;
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream("/world/" + name + ".png"));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		return image;
+	}
+	
+	public void draw(Graphics2D g2d) {	
+//		int pixelColor = referenceImage.getRGB(col, row);
+//		
+//		// Separa os componentes de cor (RGB) do pixel
+//        int red = (pixelColor >> 16) & 0xFF;
+//        int green = (pixelColor >> 8) & 0xFF;
+//        int blue = pixelColor & 0xFF;
+//		
+//		Tile tile = new Tile(gp, red, green, blue);
+//		int x = row * gp.tileSize;
+//		int y = col * gp.tileSize;
+//		tile.draw(g2d, x, y);
 	}
 }
