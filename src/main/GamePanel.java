@@ -1,4 +1,5 @@
 package main;
+import tiles. *;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -22,6 +23,13 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int screenWidth = tileSize * maxScreenCol;
 	public final int screenHeight = tileSize * maxScreenRow;
 	
+	// word settings
+	
+	public final int maxWorldCol = 50;
+	public final int maxWorldRow = 50;
+	public final int worldWidth = tileSize * maxWorldCol;
+	public final int worldHeight = tileSize * maxWorldRow;
+	
 	int FPS = 60;
 	
 	KeyHandler keyH = new KeyHandler();
@@ -33,7 +41,7 @@ public class GamePanel extends JPanel implements Runnable{
 	// para se usar threads você precisar implementar Runnable na class
 	
 	Environment Floresta = new Environment(this, "floresta");
-	Player Player = new Player(this, keyH);
+	public Player player = new Player(this, keyH);
 	
 	// define a posição padrao do player
 	int playerX = 100;
@@ -100,7 +108,7 @@ public class GamePanel extends JPanel implements Runnable{
 		}
 	}
 	public void update() {
-		Player.update();
+		player.update();
 	}
 	// esse metodo paintComponent é um metodo embutido do Java
 	// graphics é uma class que tem varias funções para desenhar na tela
@@ -113,7 +121,7 @@ public class GamePanel extends JPanel implements Runnable{
 		Graphics2D g2 = (Graphics2D)g;
 		
 		Floresta.draw(g2);
-		Player.draw(g2);
+		player.draw(g2);
 		
 		g2.dispose();
 	}

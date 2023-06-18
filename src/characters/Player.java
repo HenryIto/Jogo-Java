@@ -11,17 +11,25 @@ public class Player extends Entity {
 	GamePanel gp;
 	KeyHandler key;
 	
+	public final int screenX;
+	public final int screenY;
+	
 	public Player(GamePanel gamePanel, KeyHandler keyHandler) {
 		this.gp = gamePanel;
 		this.key = keyHandler;
+		
+		screenX = gp.screenWidth/2 - (gp.tileSize/2);
+		screenY = gp.screenHeight/2 - (gp.tileSize/2);
 		
 		setDefaultValues();
 	}
 	
 	public void setDefaultValues() {
 		name = "Remy";
-		x = 100;
-		y = 100;
+//		worldX = gp.tileSize * 23;
+//		worldY = gp.tileSize * 21;
+		worldX = 100;
+		worldY = 100;
 	}
 	
 	public void update() {
@@ -54,11 +62,11 @@ public class Player extends Entity {
 		
 		if (verticalMovement) {
 			int verticalDirection = key.downPressed ? 1 : -1; // isso vai fazer o Player ir para cima ou para baixo dependendo de qual tecla estiver apertada
-			y += speed * verticalDirection; // isso vai fazer o Player se mover na _vertical_
+			worldY += speed * verticalDirection; // isso vai fazer o Player se mover na _vertical_
 		}
 		if (horizontalMovement) {
 			verticalDirection = key.rightPressed ? 1 : -1; // isso vai fazer o Player ir para esquerda ou para direita dependendo de qual tecla estiver apertada
-			x += speed * verticalDirection; // isso vai fazer o Player se mover na _horizontal_
+			worldX += speed * verticalDirection; // isso vai fazer o Player se mover na _horizontal_
 		}
 		// System.out.println(Speed);
 	}
@@ -80,6 +88,6 @@ public class Player extends Entity {
 		int width = gp.tileSize * verticalDirection; // largura do sprite
 		int height = gp.tileSize; // altura do sprite
 		// desenha a imagem na tela
-		g2.drawImage(image, x - xOffset, y, width, height, null);
+		g2.drawImage(image, screenX - xOffset, screenY, width, height, null);
 	}
 }
