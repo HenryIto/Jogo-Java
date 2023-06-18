@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-import tiles.TileManager;
+import world.Environment;
 import characters.Player;
 
 @SuppressWarnings("serial")
@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements Runnable{
 	Thread gameThread;
 	// para se usar threads você precisar implementar Runnable na class
 	
-	TileManager Floresta = new TileManager(this);
+	Environment Floresta = new Environment(this, "floresta");
 	Player Player = new Player(this, keyH);
 	
 	// define a posição padrao do player

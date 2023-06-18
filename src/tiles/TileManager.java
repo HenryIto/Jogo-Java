@@ -11,12 +11,14 @@ public class TileManager {
 	GamePanel gp; // acho que é a interface
 	public Tile[] tile; // vetor de tiles
 	
-	public int width = gp.getWidth() / gp.tileSize;
-	public int height = gp.getHeight()	/ gp.tileSize;
+	public int width;
+	public int height;
 	
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
 		tile = new Tile[3];
+		this.width = gp.getWidth() / gp.tileSize;
+		this.height = gp.getHeight() / gp.tileSize;
 		
 		getTileImage();
 	}
