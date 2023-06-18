@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import tiles.TileManager;
 import characters.Player;
-import world.Environment;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable{
@@ -16,11 +16,11 @@ public class GamePanel extends JPanel implements Runnable{
 	final int originalTileSize = 32;
 	final int scale = 2;
 	
-	public final int tileSize = originalTileSize * scale; // 48x48 blocos
+	public final int tileSize = originalTileSize * scale;
 	final int maxScreenCol = 16;
 	final int maxScreenRow = 12;
-	final int screenWidth = tileSize * maxScreenCol; // 768 pixels
-	final int screenHeight = tileSize * maxScreenRow; // 567 pixels
+	final int screenWidth = tileSize * maxScreenCol;
+	final int screenHeight = tileSize * maxScreenRow;
 	
 	int FPS = 60;
 	
@@ -32,12 +32,8 @@ public class GamePanel extends JPanel implements Runnable{
 	Thread gameThread;
 	// para se usar threads você precisar implementar Runnable na class
 	
-
+	TileManager Floresta = new TileManager(this);
 	Player Player = new Player(this, keyH);
-	// this -> GamePanel, essa classe que ele está
-	
-	Environment env;
-	
 	
 	// define a posição padrao do player
 	int playerX = 100;
@@ -97,7 +93,7 @@ public class GamePanel extends JPanel implements Runnable{
 			
 			// quando o timer atingir 1 segundo
 			if(timer >= 1000000000) {
-				System.out.println("FPS: " +  drawCount);
+//				System.out.println("FPS: " +  drawCount);
 				drawCount = 0;
 				timer = 0;
 			}
@@ -115,6 +111,8 @@ public class GamePanel extends JPanel implements Runnable{
 		*/
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
+		
+		Floresta.draw(g2);
 		Player.draw(g2);
 		
 		g2.dispose();
