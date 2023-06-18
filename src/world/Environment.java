@@ -6,24 +6,33 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import tiles.Tile;
+import tiles.TileManager;
 import main.GamePanel;
 
-public class Environment {
+public class Environment extends TileManager {
 	GamePanel gp;
+	int[][] tileFromCoordinate;
 	
 	public Environment(GamePanel gp, String name) {
-		this.gp = gp;
-		
-		final BufferedImage referenceImage = getImage(name);
-		int width = referenceImage.getWidth();
-		int height = referenceImage.getHeight();
+		super(gp);
+		setTileFromCoordinate(name);
 	}
 	
-	public BufferedImage getImage(String name) {
+	public void setTileFromCoordinate(String name) {
+		final BufferedImage referenceImage = getImage("/world/" + name + ".png");
+		this.width = referenceImage.getWidth();
+		this.height = referenceImage.getHeight();
+		for (int row = 0; row < height; row++) {
+			for (int col = 0; col < width; col++) {
+				tileFromCoordinate[row][col] = 0;
+			}
+		}
+	}
+	
+	public BufferedImage getImage(String imagePath) {
 		BufferedImage image = null;
 		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/world/" + name + ".png"));
+			image = ImageIO.read(getClass().getResourceAsStream(imagePath));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -31,16 +40,10 @@ public class Environment {
 	}
 	
 	public void draw(Graphics2D g2d) {	
-//		int pixelColor = referenceImage.getRGB(col, row);
-//		
-//		// Separa os componentes de cor (RGB) do pixel
-//        int red = (pixelColor >> 16) & 0xFF;
-//        int green = (pixelColor >> 8) & 0xFF;
-//        int blue = pixelColor & 0xFF;
-//		
-//		Tile tile = new Tile(gp, red, green, blue);
-//		int x = row * gp.tileSize;
-//		int y = col * gp.tileSize;
-//		tile.draw(g2d, x, y);
+		for (int row = 0; row < height; row++) {
+			for (int col = 0; col < width; col++) {
+				g2d.drawImage(tile[0].image, col * gp.tileSize, row * gp.tileSize, gp.tileSize, gp.tileSize, null);
+			}
+		}
 	}
 }

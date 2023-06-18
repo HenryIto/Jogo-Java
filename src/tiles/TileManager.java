@@ -9,15 +9,20 @@ import main.GamePanel;
 
 public class TileManager {
 	GamePanel gp; // acho que é a interface
-	Tile[] tile; // vetor de tiles
-	public int elementNum;
+	public Tile[] tile; // vetor de tiles
+	
+	public int width = gp.getWidth() / gp.tileSize;
+	public int height = gp.getHeight()	/ gp.tileSize;
 	
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
-		this.elementNum = (int) (Math.random() * 3);
 		tile = new Tile[3];
 		
 		getTileImage();
+	}
+	
+	public void setTileType() {
+		
 	}
 	
 	public void getTileImage() {
@@ -36,14 +41,9 @@ public class TileManager {
 	}
 	
 	public void draw(Graphics2D g2d) {
-		
-		
-		int width = gp.getWidth() / gp.tileSize;
-		int height = gp.getHeight()	/ gp.tileSize;
-		
 		for (int row = 0; row < height; row++) {
 			for (int col = 0; col < width; col++) {
-				g2d.drawImage(tile[elementNum].image, col * gp.tileSize, row * gp.tileSize, gp.tileSize, gp.tileSize, null);
+				g2d.drawImage(tile[0].image, col * gp.tileSize, row * gp.tileSize, gp.tileSize, gp.tileSize, null);
 			}
 		}
 	}
