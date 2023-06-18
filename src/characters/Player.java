@@ -24,7 +24,7 @@ public class Player extends Entity {
 		y = 100;
 	}
 	
-	public void Update() {
+	public void update() {
 		boolean verticalMovement = key.upPressed || key.downPressed;
 		boolean horizontalMovement = key.leftPressed || key.rightPressed;
 		
@@ -64,7 +64,7 @@ public class Player extends Entity {
 	}
 	
 	// este é o sprite do player
-	public void Draw(Graphics2D g2) {
+	public void draw(Graphics2D g2) {
 		// BufferedImage descreve uma imagem com um buffer acessível de dados de imagem
 		// nos usamos isso para armazenar os nossos arquivos de imagem
 		BufferedImage image = null;

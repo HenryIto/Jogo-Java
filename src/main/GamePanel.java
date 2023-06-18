@@ -8,7 +8,9 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import characters.Player;
+import world.Environment;
 
+@SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable{
 	//screen settings
 	final int originalTileSize = 32;
@@ -33,6 +35,8 @@ public class GamePanel extends JPanel implements Runnable{
 
 	Player Player = new Player(this, keyH);
 	// this -> GamePanel, essa classe que ele está
+	
+	Environment env;
 	
 	
 	// define a posição padrao do player
@@ -100,7 +104,7 @@ public class GamePanel extends JPanel implements Runnable{
 		}
 	}
 	public void update() {
-		Player.Update();
+		Player.update();
 	}
 	// esse metodo paintComponent é um metodo embutido do Java
 	// graphics é uma class que tem varias funções para desenhar na tela
@@ -111,7 +115,7 @@ public class GamePanel extends JPanel implements Runnable{
 		*/
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
-		Player.Draw(g2);
+		Player.draw(g2);
 		
 		g2.dispose();
 	}
