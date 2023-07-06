@@ -1,5 +1,4 @@
-# Jogo Java (0.1) - Em construção 🔧
-- _O nome deste jogo ainda pode ser alterado..._
+# Shadows of Eternity (0.1) - Em construção 🔧
 
 ## 1 INTRODUÇÃO
 Este jogo é um action RPG que se passa com a câmera em 3ª pessoa.
