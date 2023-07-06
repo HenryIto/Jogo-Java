@@ -65,15 +65,15 @@ public class Environment extends TileManager {
 			for (int col = 0; col < width; col++) {
 				int worldX = col * gp.tileSize;
 				int worldY = row * gp.tileSize;
-				int screenX = worldX - gp.player.worldX + gp.player.screenX;
-				int screenY = worldY - gp.player.worldY + gp.player.screenY;
+				int screenX = worldX - gp.player.xPos + gp.player.xCam;
+				int screenY = worldY - gp.player.yPos + gp.player.yCam;
 				int tileType = tileTypeMap[col][row];
 
 				// esse if faz com que não carregue o mapa inteiro faz com que carregue o mapa comforme a camera
-				if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX  &&
-				   worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
-				   worldY + gp.tileSize> gp.player.worldY - gp.player.screenY &&
-				   worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
+				if(worldX + gp.tileSize > gp.player.xPos - gp.player.xCam  &&
+				   worldX - gp.tileSize < gp.player.xPos + gp.player.xCam &&
+				   worldY + gp.tileSize> gp.player.yPos - gp.player.yCam &&
+				   worldY - gp.tileSize < gp.player.yPos + gp.player.yCam) {
 					g2d.drawImage(tile[tileType].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 				}
 			}
