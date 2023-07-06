@@ -10,7 +10,7 @@ public class Main {
 		JFrame window = new JFrame();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);
-		window.setTitle("Jogo dos crias");
+		window.setTitle("Shadows of Eternity");
 		
 		GamePanel gamePanel = new GamePanel();
 		window.add(gamePanel);
