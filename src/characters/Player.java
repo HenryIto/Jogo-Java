@@ -8,17 +8,17 @@ import main.GamePanel;
 import main.KeyHandler;
 
 public class Player extends Entity {
-	GamePanel gp;
+	GamePanel gamePanel;
 	KeyHandler key;
 	
 	public final int xCam, yCam;
 	
 	public Player(GamePanel gamePanel, KeyHandler keyHandler) {
-		this.gp = gamePanel;
+		this.gamePanel = gamePanel;
 		this.key = keyHandler;
 		
-		xCam = gp.screenWidth/2 - (gp.tileSize/2);
-		yCam = gp.screenHeight/2 - (gp.tileSize/2);
+		xCam = gamePanel.screenWidth/2 - (gamePanel.tileSize/2);
+		yCam = gamePanel.screenHeight/2 - (gamePanel.tileSize/2);
 		
 		setDefaultValues();
 	}
@@ -83,9 +83,9 @@ public class Player extends Entity {
 			error.printStackTrace(); // caso dê errado ele manda um erro, eu acho...
 		}
 		
-		int xOffset = (gp.tileSize/2 * verticalDirection) - gp.tileSize/2; // faz com que a image não fique descentralizada quando o personagem muda a direção
-		int width = gp.tileSize * verticalDirection; // largura do sprite
-		int height = gp.tileSize; // altura do sprite
+		int xOffset = (gamePanel.tileSize/2 * verticalDirection) - gamePanel.tileSize/2; // faz com que a image não fique descentralizada quando o personagem muda a direção
+		int width = gamePanel.tileSize * verticalDirection; // largura do sprite
+		int height = gamePanel.tileSize; // altura do sprite
 		// desenha a imagem na tela
 		g2.drawImage(image, xCam - xOffset, yCam, width, height, null);
 	}

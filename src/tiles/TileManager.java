@@ -8,19 +8,19 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 
 public class TileManager {
-	GamePanel gp; // acho que é a interface
+	GamePanel gamePanel; // acho que é a interface
 	public Tile[] tile; // vetor de tiles
 //	int mapTileNum[] [];
 	
 	public int width;
 	public int height;
 	
-	public TileManager(GamePanel gp) {
-		this.gp = gp;
+	public TileManager(GamePanel gamePanel) {
+		this.gamePanel = gamePanel;
 		tile = new Tile[3];
-//		mapTileNum = new int [gp.maxWorldCol][gp.maxWorldRow];
-		this.width = gp.screenWidth / gp.tileSize;
-		this.height = gp.screenHeight / gp.tileSize;
+//		mapTileNum = new int [gamePanel.maxWorldCol][gamePanel.maxWorldRow];
+		this.width = gamePanel.screenWidth / gamePanel.tileSize;
+		this.height = gamePanel.screenHeight / gamePanel.tileSize;
 		
 		getTileImage();
 	}
@@ -48,7 +48,7 @@ public class TileManager {
 		System.out.println(width + height);
 		for (int worldRow = 0; worldRow < height; worldRow++) {
 			for (int worldCol = 0; worldCol < width; worldCol++) {
-				g2d.drawImage(tile[0].image, worldCol * gp.tileSize, worldRow * gp.tileSize, gp.tileSize, gp.tileSize, null);
+				g2d.drawImage(tile[0].image, worldCol * gamePanel.tileSize, worldRow * gamePanel.tileSize, gamePanel.tileSize, gamePanel.tileSize, null);
 			}
 		}
 	}

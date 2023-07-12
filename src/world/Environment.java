@@ -13,9 +13,9 @@ public class Environment extends TileManager {
 	GamePanel gp;
 	int[][] tileTypeMap;
 	
-	public Environment(GamePanel gp, String name) {
-		super(gp); // chama o constructor da classe TileManager
-		this.gp = gp;
+	public Environment(GamePanel gamePanel, String name) {
+		super(gamePanel); // chama o constructor da classe TileManager
+		this.gp = gamePanel;
 		setTileFromCoordinate(name);
 	}
 	
@@ -60,7 +60,7 @@ public class Environment extends TileManager {
 		return image;
 	}
 	
-	public void draw(Graphics2D g2d) {	
+	public void draw(Graphics2D g2d) {
 		for (int row = 0; row < height; row++) {
 			for (int col = 0; col < width; col++) {
 				int worldX = col * gp.tileSize;
