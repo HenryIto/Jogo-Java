@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-import world.Environment;
+import world.*;
 import characters.Player;
 
 @SuppressWarnings("serial")
@@ -41,6 +41,13 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	Environment Floresta = new Environment(this, "floresta");
 	public Player player = new Player(this, keyH);
+	Environment[] environments = {
+		new Forest(this),
+		new Mountains(this),
+		new Desert(this),
+		new Sea(this)
+	};
+	World world = new World(0, environments);
 	
 	public CollisionChecker collisionChecker = new CollisionChecker(this);
 	
