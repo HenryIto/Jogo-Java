@@ -70,7 +70,7 @@ public class Environment extends TileManager {
 				int tileType = tileTypeMap[col][row];
 
 				// esse if faz com que não carregue o mapa inteiro faz com que carregue o mapa comforme a camera
-				if(worldX + gp.tileSize > gp.player.xPos - gp.player.xCam  &&
+				if(worldX + gp.tileSize > gp.player.xPos - gp.player.xCam &&
 				   worldX - gp.tileSize < gp.player.xPos + gp.player.xCam &&
 				   worldY + gp.tileSize> gp.player.yPos - gp.player.yCam &&
 				   worldY - gp.tileSize < gp.player.yPos + gp.player.yCam) {

@@ -7,7 +7,7 @@ public abstract class Entity {
 	public int xPos, yPos;
 	public float speed = 0f;
 	
-	public int verticalDirection = 1; // nome da direção para ser usado no sprite
+	public int horizontalDirection = 1; // nome da direção para ser usado no sprite
 	public String state = "idle"; // nome do stado do sprite
 	
 	public int spriteCounter = 0;

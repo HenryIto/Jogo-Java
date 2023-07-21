@@ -79,7 +79,7 @@ public class GamePanel extends JPanel implements Runnable{
 		long lastTime = System.nanoTime();
 		long currentTime;
 		long timer = 0;
-		int drawCount = 0;
+//		int drawCount = 0;
 		
 		// enquanto este gameThread existir ele vai ficar executando o que ta dentro do while
 		while(gameThread !=  null) {
@@ -102,13 +102,13 @@ public class GamePanel extends JPanel implements Runnable{
 				// voce escreve repaint
 				repaint();	
 				delta--;
-				drawCount++;
+//				drawCount++;
 			}
 			
 			// quando o timer atingir 1 segundo
 			if(timer >= 1000000000) {
 //				System.out.println("FPS: " +  drawCount);
-				drawCount = 0;
+//				drawCount = 0;
 				timer = 0;
 			}
 		}

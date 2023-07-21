@@ -1,5 +1,7 @@
 package main;
 
+import java.time.LocalDate;
+
 import javax.swing.JFrame;
 
 public class Main {
@@ -21,6 +23,9 @@ public class Main {
 		window.setVisible(true);
 		
 		gamePanel.startGameThread();
+		
+		LocalDate date = LocalDate.of(2001, 12, 21);
+		System.out.println(date);
 	}
 
 }

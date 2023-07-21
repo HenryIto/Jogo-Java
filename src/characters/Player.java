@@ -2,6 +2,7 @@ package characters;
 
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
+
 import javax.imageio.ImageIO;
 
 import main.GamePanel;
@@ -55,8 +56,8 @@ public class Player extends Entity {
 			yPos += speed * verticalDirection; // isso vai fazer o Player se mover na _vertical_
 		}
 		if (horizontalMovement) {
-			verticalDirection = key.rightPressed ? 1 : -1; // isso vai fazer o Player ir para esquerda ou para direita dependendo de qual tecla estiver apertada
-			xPos += speed * verticalDirection; // isso vai fazer o Player se mover na _horizontal_
+			horizontalDirection = key.rightPressed ? 1 : -1; // isso vai fazer o Player ir para esquerda ou para direita dependendo de qual tecla estiver apertada
+			xPos += speed * horizontalDirection; // isso vai fazer o Player se mover na _horizontal_
 		}
 		// System.out.println(Speed);
 	}
@@ -74,8 +75,8 @@ public class Player extends Entity {
 			error.printStackTrace(); // caso dê errado ele manda um erro, eu acho...
 		}
 		
-		int xOffset = (gamePanel.tileSize/2 * verticalDirection) - gamePanel.tileSize/2; // faz com que a image não fique descentralizada quando o personagem muda a direção
-		int width = gamePanel.tileSize * verticalDirection; // largura do sprite
+		int xOffset = (gamePanel.tileSize/2 * horizontalDirection) - gamePanel.tileSize/2; // faz com que a image não fique descentralizada quando o personagem muda a direção
+		int width = gamePanel.tileSize * horizontalDirection; // largura do sprite
 		int height = gamePanel.tileSize; // altura do sprite
 		// desenha a imagem na tela
 		g2.drawImage(image, xCam - xOffset, yCam, width, height, null);

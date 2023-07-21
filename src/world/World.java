@@ -14,6 +14,5 @@ public class World {
 	}
 	
 	public void teste() {
-		
 	}
 }
