@@ -13,22 +13,13 @@ public class Player extends Entity {
 	
 	public final int xCam, yCam;
 	
-	public Player(GamePanel gamePanel, KeyHandler keyHandler) {
+	public Player(GamePanel gamePanel, KeyHandler keyHandler, String name, int xPos, int yPos) {
+		super(name, xPos, yPos);
 		this.gamePanel = gamePanel;
 		this.key = keyHandler;
 		
 		xCam = gamePanel.screenWidth/2 - (gamePanel.tileSize/2);
 		yCam = gamePanel.screenHeight/2 - (gamePanel.tileSize/2);
-		
-		setDefaultValues();
-	}
-	
-	public void setDefaultValues() {
-		name = "Remy";
-//		worldX = gp.tileSize * 23;
-//		worldY = gp.tileSize * 21;
-		xPos = 100;
-		yPos = 100;
 	}
 	
 	public void update() {

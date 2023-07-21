@@ -1,5 +1,4 @@
 package main;
-import tiles. *;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -41,14 +40,14 @@ public class GamePanel extends JPanel implements Runnable{
 	// para se usar threads você precisar implementar Runnable na class
 	
 	Environment Floresta = new Environment(this, "floresta");
-	public Player player = new Player(this, keyH);
-	Environment[] environments = {
-		new Forest(this),
-		new Mountains(this),
-		new Desert(this),
-		new Sea(this)
-	};
-	World world = new World(0, environments);
+	public Player player = new Player(this, keyH, "Remy", 100, 100);
+//	Environment[] environments = {
+//		new Forest(this),
+//		new Mountains(this),
+//		new Desert(this),
+//		new Sea(this)
+//	};
+//	World world = new World(0, environments);
 	
 	// define a posição padrao do player
 	int playerX = 100;

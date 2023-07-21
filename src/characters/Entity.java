@@ -1,9 +1,9 @@
 package characters;
 
-public class Entity {
+public abstract class Entity {
 	public float MAX_SPEED = 4f; // velocidade máxima que a entidade vai andar; é usado junto com a variável speed
 	
-	public String name = "EntityName";
+	final public String name;
 	public int xPos, yPos;
 	public float speed = 0f;
 	
@@ -12,4 +12,10 @@ public class Entity {
 	
 	public int spriteCounter = 0;
 	public int spriteNum = 1;
+	
+	public Entity(String name, int xPos, int yPos) {
+		this.name = name;
+		this.xPos = xPos;
+		this.yPos = yPos;
+	}
 }
